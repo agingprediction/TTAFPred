@@ -294,7 +294,7 @@ def load_data(filename, columnName):
 
 if __name__ == "__main__":
    #加载数据
-    data = pd.read_csv("./OpenStack/UL_o4t2.csv") 
+    data = pd.read_csv("./OpenStack/RUL_o4t2.csv") 
     # OpenStack o4t1 A, o4t2 B, o4t3 C
    
     print(data.columns)
