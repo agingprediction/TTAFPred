@@ -32,7 +32,6 @@ def attention_3d_block(inputs):
     return output_attention_mul
 
 def attention_3d_block2(inputs, single_attention_vector=False):
-    # 如果上一层是LSTM，需要return_sequences=True
     # inputs.shape = (batch_size, time_steps, input_dim)
     time_steps = K.int_shape(inputs)[1]
     input_dim = K.int_shape(inputs)[2]
@@ -63,16 +62,9 @@ def divideTrainTest(dataset, rate = 2918/(3044+2918)):
     return train, test
 
 def create_dataset(dataset, look_back):
-    '''
-    对数据进行处理,当使用先划分数据集时，分别修改一下就可以用了
-    '''
-      
-    
     dataX, dataY = [], []
-    for i in range(len(dataset) - look_back):
-        # 如果你想加pollution，下面就不要动
-        # 如果不加，下面改成X.append(data[i:i + size, 1:])，然后下面fea_num=7       
-        a = dataset[i:(i+look_back),1:]   #[i:(i+look_back),0:10] 前11列 
+    for i in range(len(dataset) - look_back):     
+        a = dataset[i:(i+look_back),1:]  
         dataX.append(a)
     #    X.append(data[i:i + size, :])
         dataY.append(dataset[i + look_back, 0])  # (dataset[i + look_back, 12]) 第12列RUL
@@ -197,7 +189,7 @@ def model(INPUT_DIMS, lookBack, filters, kernel_size, hidden_dim, lr):
     
 #    print("x5 is", x5.shape)
     
-    concat_output = Add()([res, x5]) #axix=0,在第一维拼接 考虑是否用Add（）看效果
+    concat_output = Add()([res, x5]) 
   
     print("concat_output is", concat_output.shape)
     
@@ -206,8 +198,8 @@ def model(INPUT_DIMS, lookBack, filters, kernel_size, hidden_dim, lr):
     
 #RUl prediction
     
-    fc = Dense(128, activation = 'relu')(concat_output) #64 或者128
-    fc = Flatten()(fc) #不用该 行，只用两个dense试试
+    fc = Dense(128, activation = 'relu')(concat_output) 
+    fc = Flatten()(fc) 
     output = Dense(1)(fc) #
   
        
@@ -264,11 +256,6 @@ def attention_model(data, INPUT_DIMS, lookBack, epochs, batchSize, filters, kern
     train_Y = train_Y.reshape(-1, 1)
     train_Y = FNormalizeMult(train_Y, normalize)
     
-
-
-
-
-####在寿命预测的时候，这个要normalize1，与上面数据划分一致
     testPred = FNormalizeMult(testPred, normalize1)
     test_Y = test_Y.reshape(-1, 1)
     test_Y = FNormalizeMult(test_Y, normalize1)
