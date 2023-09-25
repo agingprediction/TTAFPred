@@ -159,12 +159,6 @@ def LBtest(data):
 
 if __name__ == "__main__":
 
-  #  ts, data = load_data("./data/NSW2013.csv", columnName="TOTALDEMAND")
-    # ts, data = load_data("./data/bike_hour.csv", columnName="cnt")
-    # ts, data = load_data("./data/TAS2016.csv", columnName="TOTALDEMAND")
-    # ts, data = load_data("./data/traffic_data_in_bits.csv", columnName="value")
-    # ts, data = load_data("./data/beijing_pm25.csv", columnName="pm2.5")
-    # ts, data = load_data("./data/solar_energy_1.csv", columnName="Power(MW)")
     ts, data = load_data("./data/IOTdata2.csv", columnName="Mem")
     plt.plot(data)
     plt.show()
