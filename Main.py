@@ -67,7 +67,7 @@ def create_dataset(dataset, look_back):
         a = dataset[i:(i+look_back),1:]  
         dataX.append(a)
     #    X.append(data[i:i + size, :])
-        dataY.append(dataset[i + look_back, 0])  # (dataset[i + look_back, 12]) 第12列RUL
+        dataY.append(dataset[i + look_back, 0]) 
     
     TrainX = np.array(dataX)
     Train_Y = np.array(dataY)
