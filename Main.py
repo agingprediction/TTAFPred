@@ -56,7 +56,7 @@ def divideTrainTest(dataset, rate = 2918/(3044+2918)):
   #  train_size = int(len(dataset) * (1-rate))
     test_size = int(len(dataset) * rate)
   
-    train, test = dataset[: -test_size], dataset[-test_size:]#有时会需要-1
+    train, test = dataset[: -test_size], dataset[-test_size:]#
     print (len(train))
     print (len(test))       
     return train, test
