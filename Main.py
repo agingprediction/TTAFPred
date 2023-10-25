@@ -50,7 +50,7 @@ def attention_3d_block2(inputs, single_attention_vector=False):
     
     return output_attention_mul
 
-def divideTrainTest(dataset, rate = 2918/(3044+2918)): 
+def divideTrainTest(dataset, rate = 0.3): 
 
     print (len(dataset))
   #  train_size = int(len(dataset) * (1-rate))
@@ -281,13 +281,12 @@ def load_data(filename, columnName):
 
 if __name__ == "__main__":
    #加载数据
-    data = pd.read_csv("./OpenStack/RUL_o4t2.csv") 
-    # OpenStack o4t1 A, o4t2 B, o4t3 C
-   
+    data = pd.read_csv("./OpenStack/RUL.csv") 
+     
     print(data.columns)
     print(data.shape)
 
-    INPUTDIMS = 10 # Android:13, OpenStack:10
+    INPUTDIMS = 10 #
     
     TIME_STEPS = 20 #固定20
     hidden_dim = 64 #固定 64
